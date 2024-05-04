@@ -38,7 +38,7 @@ class Snake:
       return True
 
   def changeDirection(self, direction = 0):
-    if self.canChangeDirection:
+    if self.canChangeDirection(direction):
       self.dir = direction
 
   def move(self):
@@ -81,6 +81,8 @@ class Snake:
   def canChangeDirection(self, direction):
     if self.dir == direction:
       return False
+    elif self.length == 1:
+      return True
     elif self.dir < 0:
       return False
     elif self.dir > 3:

@@ -1,4 +1,6 @@
 # main game loop class
+
+#  Not being used right now but don't want to delete just yet
 from Painter import Painter
 from Board import Board
 from Snake import Snake
@@ -6,7 +8,7 @@ from Food import Food
 from Coordinate import Coordinate
 
 class GameLoop:
-  def __init__(self, gui):
+  def __init__(self, gui, width=20, height=20, pixelSize=26, pieceSize=22):
   	self.painter = gui
 
   def paintScreen(self):

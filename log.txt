@@ -18,9 +18,29 @@ is crawling around the screen smoothly.  Going to take a break but when I come b
 need to address the following issues:
 	- Create the Board, Snake, etc inside of the Painter constructor
 	- get game clock running (right now a "tick" only happens when you hit a button)
+		-- set up different speeds
 	- set up game rules
-	- snake can not pass through itself
-	- playing field needs borders
-	- hitting oneself or hitting the border means death
+		-- snake can not pass through itself
+		-- playing field needs borders
+		-- hitting oneself or hitting the border means death
 	- create start and end screen
+	- should probably wrap everything in a Main class just to be safe
+		-- Control the loop from inside the GUI but can still create the starting board
+		   and snake from the Main class
+		-- This can act as a test harness as well
+
+	- idea for if the game is running slow:
+		-- instead of redrawing the snake every tick, draw a green square over the last tail piece and redraw the head
+
+5/4 Round 2
+built the Game class which is a wrapper to join the board and painter classes
+The game runs just as it did before from calling that class
+Need to figure out a more streamlined way of passing width and height vars
+
+fixed a control issue, can now only give one direction input per frame
+
+
+
+
+
 

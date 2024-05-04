@@ -8,7 +8,7 @@ class Painter:
   # eventually implement so there are discrete screen sizes
   # 20x20 would be a good "medium" size.  for now we will mostly
   # use 20 as the default size
-  def __init__(self, board, width=20, height=20, pixelSize=26, pieceSize=22):
+  def __init__(self, board, width=20, height=20, pixelSize=26, pieceSize=22, speed=0):
     pygame.init()
     self.width = width
     self.height = height
@@ -23,10 +23,14 @@ class Painter:
 
     self.paddingSize = 70
 
-    """
-    TODO:
-    Create the Board, Snake, etc inside of the Painter constructor here
-    """
+    # Convert speed value to buffer
+    self.speed = 10
+    if speed == 0:
+      self.speed = 5
+    if speed == 1:
+      self.speed = 10
+    if speed == 2:
+      self.speed = 15
 
     # Set up colors
     DARK_BROWN = (135,112,80)
@@ -48,11 +52,14 @@ class Painter:
 
     self.screen = pygame.display.set_mode((self.width*self.pixelSize + self.paddingSize, self.height*self.pixelSize + self.paddingSize))
     pygame.display.set_caption("snake")
+    self.clock = pygame.time.Clock()
 
   def gameLoop(self):
     running = True
     while running:
-        # Event handling
+      # add delay
+      self.clock.tick(self.speed)
+      # Event handling
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
           running = False
@@ -60,21 +67,24 @@ class Painter:
           if event.key == pygame.K_UP:
             key_pressed = "UP"
             self.board.changeSnakeDirection(3)
+            break
           elif event.key == pygame.K_DOWN:
             key_pressed = "DOWN"
             self.board.changeSnakeDirection(1)
+            break
           elif event.key == pygame.K_LEFT:
             key_pressed = "LEFT"
             self.board.changeSnakeDirection(2)
+            break
           elif event.key == pygame.K_RIGHT:
             key_pressed = "RIGHT"
             self.board.changeSnakeDirection(0)
+            break
           else:
             key_pressed = "UNKNOWN"
           print("Key pressed:", key_pressed)
-          self.board.tick()
-        self.paint()
-        # Print which key is being pressed
+      self.board.tick()
+      self.paint()
         
 
 
@@ -102,10 +112,7 @@ class Painter:
     pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + (self.board.snake.head.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (self.board.snake.head.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))
 
     # paint body
-    print("snake body")
     for piece in self.board.snake.body:
-      print("X ", piece.x)
-      print("Y ", piece.y)
       pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + (piece.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (piece.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))    
 
     """
@@ -122,16 +129,17 @@ class Painter:
 
 # (self, width, height, snake = None, food = None):
 # Board
+"""
 f = Food(20,20)
 testSnakeStraightTop = Snake(Coordinate(4,0), 20, 20, [Coordinate(0,0), Coordinate(1,0), Coordinate(2,0), Coordinate(3,0)])
 startingSnake = Snake(Coordinate(3,1), 20, 20, [])
 # (self, width, height, snake = None, food = None):
-b = Board(20,20,testSnakeStraightTop,f)
+b = Board(testSnakeStraightTop,f)
 g = Painter(b)
 
 while True:
   g.gameLoop()
-
+"""
 
 """
   
