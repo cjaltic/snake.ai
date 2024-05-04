@@ -6,3 +6,21 @@ Implemeted food and coordinate functionality
 Implemented the main functionality for the snake class, there's nothing to run it on
 so I can't test it right now.  
 I'm considering adding a Main class on top of the board class to run it easier
+
+5/4
+Completing board functionality
+Created GUI class, started GUI implementation
+developed GUI class.  able to print out a snake and food
+next step is to connect the GUI to the board and get the game running
+
+Got the GUI connected to the board, addressed a few bugs but now the snake
+is crawling around the screen smoothly.  Going to take a break but when I come back
+need to address the following issues:
+	- Create the Board, Snake, etc inside of the Painter constructor
+	- get game clock running (right now a "tick" only happens when you hit a button)
+	- set up game rules
+	- snake can not pass through itself
+	- playing field needs borders
+	- hitting oneself or hitting the border means death
+	- create start and end screen
+

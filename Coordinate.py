@@ -1,4 +1,4 @@
-## Coordinate class
+# Coordinate class
 import random
 
 class Coordinate:
@@ -6,6 +6,17 @@ class Coordinate:
     self.x = x
     self.y = y
 
-  def randomCoordinate(self, start, end):
-  	self.x = random.randint(start, end)
-  	self.y = random.randint(start, end)
+  def randomCoordinate(self, width, height):
+  	self.x = random.randint(0, width -1)
+  	self.y = random.randint(0, height -1)
+
+  def compare(self, c):
+  	if self.x == c.x and self.y == c.y:
+  		return True
+  	return False
+
+  def modX(self, x):
+  	self.x = x
+
+  def modY(self, y):
+  	self.y = y

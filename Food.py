@@ -1,5 +1,5 @@
-## Food class
-import Coordinate
+# Food class
+from Coordinate import Coordinate
 
 class Food:
   def __init__(self, width, height):
