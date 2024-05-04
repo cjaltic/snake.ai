@@ -1,0 +1,8 @@
+5/3/2024
+Initial commit
+update readme
+created Snake Coordinate Food and Board classes
+Implemeted food and coordinate functionality
+Implemented the main functionality for the snake class, there's nothing to run it on
+so I can't test it right now.  
+I'm considering adding a Main class on top of the board class to run it easier
