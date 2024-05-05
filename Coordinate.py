@@ -14,9 +14,3 @@ class Coordinate:
   	if self.x == c.x and self.y == c.y:
   		return True
   	return False
-
-  def modX(self, x):
-  	self.x = x
-
-  def modY(self, y):
-  	self.y = y
