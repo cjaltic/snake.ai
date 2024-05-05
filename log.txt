@@ -7,7 +7,7 @@ Implemented the main functionality for the snake class, there's nothing to run i
 so I can't test it right now.  
 I'm considering adding a Main class on top of the board class to run it easier
 
-5/4
+5/4/2024
 Completing board functionality
 Created GUI class, started GUI implementation
 developed GUI class.  able to print out a snake and food
@@ -32,17 +32,20 @@ need to address the following issues:
 	- idea for if the game is running slow:
 		-- instead of redrawing the snake every tick, draw a green square over the last tail piece and redraw the head
 
-5/4 Round 2
+5/4/2024 Afternoon
 built the Game class which is a wrapper to join the board and painter classes
 The game runs just as it did before from calling that class
 Need to figure out a more streamlined way of passing width and height vars
 
 fixed a control issue, can now only give one direction input per frame
 
-Added variable speeds.  Right now just have 3 speeds 
+Added game clock with variable speeds.  Right now just have 3 speeds 
 
 consider not using an infinite loop in the Painter and just relying on the main
 loop in Game.py
+
+The game is essentially complete.  I would still like to add a start screen and untangle the loops and how the
+board dimensions are being passed but for now this works perfectly.  Now I'm gonna start on the AI side.
 
 
 
