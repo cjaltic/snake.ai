@@ -50,6 +50,10 @@ board dimensions are being passed but for now this works perfectly.  Now I'm gon
 Would also like to add a quick high score tracker that saves between boots.  If I get the time I'll add that tomorrow.
 
 
+5/5
+Got the high score engine built and working.
+
+
 
 
 

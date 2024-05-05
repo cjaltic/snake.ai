@@ -6,17 +6,13 @@ from Coordinate import Coordinate
 from Food import Food
 class Game:
   # speed will be 0,1, or 2 with 0 being slowest and 2 being fastest
-  def __init__(self, width, height, pixelSize, pieceSize, speed):
-
-    # def __init__(self, width, height, snake, food = None):
+  def __init__(self, width, height, pixelSize, pieceSize, speed, highScoreFile):
     # create the board
-    # def __init__(self, head, width, height, body = []):
     self.width = width
     self.height = height
 
     snake = Snake(Coordinate(3,1), width, height)
-    board = Board(snake)
-
+    board = Board(snake, highScoreFile)
 
     # give board to the painter
     self.painter = Painter(board, width, height, pixelSize, pieceSize, speed)
@@ -28,9 +24,10 @@ class Game:
       self.painter.board.resetSnake()
       running = self.painter.endGame()
       self.painter.resetScore()
+
   def startingSnake(self):
     return Snake(Coordinate(3,1),self.width, self.height)
 
 if __name__ == "__main__":
-  g = Game(20,20,26,22,1)
+  g = Game(20,20,26,22,1, "hs.txt")
   g.startGame()

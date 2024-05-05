@@ -113,13 +113,14 @@ class Painter:
     pygame.draw.rect(self.screen, self.BACKGROUND_COLOR, (self.paddingSize/2, self.paddingSize/2, self.width*self.pixelSize, self.height*self.pixelSize))
 
   def paintHighScore(self):
-    self.screen.blit(self.font.render("HIGH SCORE: " + str(self.board.score), False, self.TEXT_COLOR, self.BORDER_COLOR), ((self.width*self.pixelSize + self.paddingSize) - ((self.width * self.pixelSize + self.paddingSize) / 3), ((self.height - 1)*self.pixelSize + self.paddingSize) - self.pixelPadding))
+    self.screen.blit(self.font.render("HIGH SCORE: " + str(self.board.highScoreEngine.highScore), False, self.TEXT_COLOR, self.BORDER_COLOR), ((self.width*self.pixelSize + self.paddingSize) - ((self.width * self.pixelSize + self.paddingSize) / 3), ((self.height - 1)*self.pixelSize + self.paddingSize) - self.pixelPadding))
 
   def paintEndGame(self):
     self.screen.blit(self.bigFont.render("GAME OVER", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,50))
     self.screen.blit(self.bigFont.render("SCORE:  " + str(self.board.score), False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,100))
     self.screen.blit(self.font.render("press q to quit or", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,200))
     self.screen.blit(self.font.render("press any other key to play again", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,250))
+    self.paintHighScore()
   def paintFood(self):
      pygame.draw.rect(self.screen, self.FOOD_COLOR, (self.paddingSize/2 + (self.board.food.location.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (self.board.food.location.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))
 

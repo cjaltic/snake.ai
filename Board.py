@@ -2,12 +2,15 @@
 from Snake import Snake
 from Coordinate import Coordinate
 from Food import Food
+from HighScoreEngine import HighScoreEngine
 
 class Board:
-  def __init__(self, snake, food = None):
+  def __init__(self, snake, highScoreFile, food = None):
     self.snake = snake
     self.food = food
     self.score = 0
+
+    self.highScoreEngine = HighScoreEngine(highScoreFile)
 
     if self.food is None:
       self.spawnFood()
@@ -22,6 +25,7 @@ class Board:
     self.snake.move()
     if self.snake.head.compare(self.food.location):
       self.score = self.score + 1
+      self.highScoreEngine.checkScore(self.score)
       self.snake.eat()
       self.spawnFood()
     return True
