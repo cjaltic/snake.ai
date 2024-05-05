@@ -135,7 +135,6 @@ class Painter:
     self.paintBackground()
     self.paintEndGame()
     pygame.display.flip()
-
     
     running = True
     while running:

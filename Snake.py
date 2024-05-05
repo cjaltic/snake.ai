@@ -59,6 +59,12 @@ class Snake:
         self.body.remove(self.body[0])
         self.head = Coordinate(self.head.x, self.head.y - 1)
 
+  def isTouchingSelf(self):
+    for c in self.body:
+      if c.compare(self.head):
+        return True
+    return False
+
   def canChangeDirection(self, direction):
     if self.dir == direction:
       return False

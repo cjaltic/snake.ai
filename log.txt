@@ -39,6 +39,13 @@ Need to figure out a more streamlined way of passing width and height vars
 
 fixed a control issue, can now only give one direction input per frame
 
+Added variable speeds.  Right now just have 3 speeds 
+
+consider not using an infinite loop in the Painter and just relying on the main
+loop in Game.py
+
+
+
 
 
 

@@ -17,6 +17,8 @@ class Board:
     # if snake is not alive make tick() return False
     if self.snake.head.x < 0 or self.snake.head.x > self.snake.width - 1 or self.snake.head.y < 0 or self.snake.head.y > self.snake.height - 1:
       return False
+    if self.snake.isTouchingSelf():
+      return False
     self.snake.move()
     if self.snake.head.compare(self.food.location):
       self.score = self.score + 1
