@@ -11,6 +11,9 @@ class Game:
     # def __init__(self, width, height, snake, food = None):
     # create the board
     # def __init__(self, head, width, height, body = []):
+    self.width = width
+    self.height = height
+
     snake = Snake(Coordinate(3,1), width, height)
     board = Board(snake)
 
@@ -19,8 +22,14 @@ class Game:
     self.painter = Painter(board, width, height, pixelSize, pieceSize, speed)
 
   def startGame(self):
-    self.painter.gameLoop()
-    # self.endGame()
+    running = True
+    while running:
+      self.painter.gameLoop()
+      self.painter.board.resetSnake()
+      running = self.painter.endGame()
+      self.painter.resetScore()
+  def startingSnake(self):
+    return Snake(Coordinate(3,1),self.width, self.height)
 
 if __name__ == "__main__":
   g = Game(20,20,26,22,1)

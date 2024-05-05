@@ -48,6 +48,7 @@ class Painter:
     self.TEXT_COLOR = WHITE
 
     # Set up fonts
+    self.bigFont = pygame.font.Font(None, 50)
     self.font = pygame.font.Font(None, 36)
 
     self.screen = pygame.display.set_mode((self.width*self.pixelSize + self.paddingSize, self.height*self.pixelSize + self.paddingSize))
@@ -83,24 +84,39 @@ class Painter:
           else:
             key_pressed = "UNKNOWN"
           print("Key pressed:", key_pressed)
-      self.board.tick()
+      
+      if not self.board.tick():
+        running = False
+
       self.paint()
         
+  def resetSnake(self):
+    self.board.resetSnake()
 
+  def resetScore(self):
+    self.board.resetScore()
 
   def paint(self):
+    self.paintBackground()
+    self.paintSnake()
+    self.paintFood()
+    self.paintScore()
+    pygame.display.flip()
+
+  def paintScore(self):
+    self.screen.blit(self.font.render("Score: " + str(self.board.score), False, self.TEXT_COLOR, self.BORDER_COLOR), (self.paddingSize/6, ((self.height - 1)*self.pixelSize + self.paddingSize) - self.pixelPadding))
+
+  def paintBackground(self):
     # Paint background (border)
     self.screen.fill(self.BORDER_COLOR)
     # Paint playing field
     pygame.draw.rect(self.screen, self.BACKGROUND_COLOR, (self.paddingSize/2, self.paddingSize/2, self.width*self.pixelSize, self.height*self.pixelSize))
-    # Paint snake
-    self.paintSnake()
-    self.paintFood()
-    self.screen.blit(self.font.render("Score: " + str(self.board.score), False, self.TEXT_COLOR, self.BORDER_COLOR), (self.paddingSize/6, ((self.height - 1)*self.pixelSize + self.paddingSize) - self.pixelPadding))
-    pygame.display.flip()
 
-  # def paintScore(self):
-
+  def paintEndGame(self):
+    self.screen.blit(self.bigFont.render("GAME OVER", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,50))
+    self.screen.blit(self.bigFont.render("SCORE:  " + str(self.board.score), False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,100))
+    self.screen.blit(self.font.render("press q to quit or", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,200))
+    self.screen.blit(self.font.render("press any other key to play again", False, self.TEXT_COLOR, self.BACKGROUND_COLOR), (50,2500))
   def paintFood(self):
      pygame.draw.rect(self.screen, self.FOOD_COLOR, (self.paddingSize/2 + (self.board.food.location.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (self.board.food.location.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))
 
@@ -113,7 +129,32 @@ class Painter:
 
     # paint body
     for piece in self.board.snake.body:
-      pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + (piece.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (piece.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))    
+      pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + (piece.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (piece.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))
+
+  def endGame(self):
+    self.paintBackground()
+    self.paintEndGame()
+    pygame.display.flip()
+
+    
+    running = True
+    while running:
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          running = False
+          pygame.quit()
+          quit()
+          return False
+        elif event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_q:
+            running = False
+            pygame.quit()
+            quit()
+            return False
+          else:
+            running = False
+            break
+    return True
 
     """
     pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + self.pixelPadding, self.paddingSize/2 + self.pixelPadding, self.pieceSize, self.pieceSize))

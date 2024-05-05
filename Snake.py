@@ -18,25 +18,6 @@ class Snake:
     self.height = height
     self.growCount = 0
 
-  def isAlive(self):
-    if self.head in self.body:
-      self.alive = False
-      return False
-    elif self.head.x < 0:
-      self.alive = False
-      return False
-    elif self.head.x > self.width:
-      self.alive = False
-      return False
-    elif self.head.y < 0 :
-      self.alive = False
-      return False
-    elif self.head.y > self.height:
-      self.alive = False
-      return False
-    else:
-      return True
-
   def changeDirection(self, direction = 0):
     if self.canChangeDirection(direction):
       self.dir = direction
