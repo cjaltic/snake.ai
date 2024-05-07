@@ -24,7 +24,7 @@ class Board:
       self.spawnFood()
 
   def tick(self):
-    print("X, Y:  ", self.snake.head.x, " ", self.snake.head.y)
+    # print("X, Y:  ", self.snake.head.x, " ", self.snake.head.y)
     self.tickCount = self.tickCount + 1
     # check if the snake is alive or not
     # if snake is not alive make tick() return False

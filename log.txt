@@ -73,7 +73,9 @@ If I have this in place it will be easier to abstract and run many games and it 
 I might need to redo a lot of my work on the Computer class but this is the way forward.
 
 
-
+5/7
+Spent some time cleaning things up and reorganizing.  Now the Computer class is integrated well.  I just need to implement the computer
+player with graphics and add the Abstract Controller class before I can start implementing AI algorithms.
 
 
 

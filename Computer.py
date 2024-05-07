@@ -1,4 +1,6 @@
 # Computer class
+# use the following to create a computer for a standard human player game
+# c = Computer(20,20,0,1,"hs.txt",26,22,1)
 from Board import Board
 from Snake import Snake
 from Painter import Painter
@@ -6,7 +8,7 @@ from Coordinate import Coordinate
 import random
 class Computer:
   
-  def __init__(self, width, height, gameMode, graphicsMode, highScoreFile = None, pixelSize = None, pieceSize = None, speed = None):
+  def __init__(self, width, height, highScoreFile = None, pixelSize = None, pieceSize = None, speed = None):
     # must inheret from abstract class Controller.py
     self.controller = None
 
@@ -18,21 +20,6 @@ class Computer:
     self.pixelSize = pixelSize
     self.pieceSize = pieceSize
     self.speed = speed
-    
-    self.gameMode = gameMode
-    self.graphicsMode = graphicsMode
-    # make sure graphics are on for human controller
-    if self.gameMode == 0:
-      self.graphicsMode = 1
-    
-    # create a Painter object if graphics are turned on
-    if self.gameMode == 0:
-      self.startGame_HumanPlayer()
-
-    elif self.gameMode == 1:
-      print("Computer")
-      self.startGame_ComputerPlayer()
-
 
   def startGame_HumanPlayer(self):
     starterSnake = Snake(Coordinate(3,1))
@@ -61,7 +48,7 @@ class Computer:
       painter.resetScore()
 
   def startGame_ComputerPlayer(self):
-    starterSnake = Snake(Coordinate(3,1))
+    starterSnake = Snake(Coordinate(3,1), [])
     board = Board(starterSnake, self.width, self.height)
     count = 0
 
@@ -70,11 +57,12 @@ class Computer:
       count = count + 1
       controllerInput = self.randomMove()
       if controllerInput != 4:
-        print("MOVING:  ", controllerInput)
+        # print("MOVING:  ", controllerInput)
         board.changeSnakeDirection(controllerInput)
       if not board.tick():
         game = False
-    print("SCORE:  ", count)
+    # print("SCORE:  ", count)
+    return count
 
 
   def randomMove(self):
@@ -91,8 +79,23 @@ if __name__ == "__main__":
 
   # start human player game
   # c = Computer(20,20,0,1,"hs.txt",26,22,1)
+  """  data = []
+  condition = True
+  count = 0
+  while condition:
+    count = count + 1
+    c = Computer(20,20,1,0)
+    data.append(c.startGame_ComputerPlayer())
+    if 400 < max(data):
+      condition = False
+  print(max(data))
+  print(count)
+  """
 
-  c = Computer(20,20,1,0)
+  c = Computer(20,20,"hs.txt",26,22,1)
+  c.startGame_HumanPlayer()
+
+  # c = Computer(20,20,1,0)
 
 
 
