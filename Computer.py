@@ -6,7 +6,7 @@ from Coordinate import Coordinate
 import random
 class Computer:
   
-  def __init__(self, width, height, highScoreFile, gameMode, graphicsMode, pixelSize = None, pieceSize = None, speed = None):
+  def __init__(self, width, height, gameMode, graphicsMode, highScoreFile = None, pixelSize = None, pieceSize = None, speed = None):
     # must inheret from abstract class Controller.py
     self.controller = None
 
@@ -31,12 +31,12 @@ class Computer:
 
     elif self.gameMode == 1:
       print("Computer")
-
+      self.startGame_ComputerPlayer()
 
 
   def startGame_HumanPlayer(self):
-    starterSnake = Snake(Coordinate(3,1), self.width, self.height)
-    board = Board(starterSnake, self.highScoreFile)
+    starterSnake = Snake(Coordinate(3,1))
+    board = Board(starterSnake, self.width, self.height, self.highScoreFile)
     painter = Painter(board, self.width, self.height, self.pixelSize, self.pieceSize, self.speed)
     start = True
     while start:
@@ -60,11 +60,39 @@ class Computer:
       running = painter.endGame()
       painter.resetScore()
 
+  def startGame_ComputerPlayer(self):
+    starterSnake = Snake(Coordinate(3,1))
+    board = Board(starterSnake, self.width, self.height)
+    count = 0
+
+    game = True
+    while game:
+      count = count + 1
+      controllerInput = self.randomMove()
+      if controllerInput != 4:
+        print("MOVING:  ", controllerInput)
+        board.changeSnakeDirection(controllerInput)
+      if not board.tick():
+        game = False
+    print("SCORE:  ", count)
+
+
+  def randomMove(self):
+    num = random.randint(0,10)
+    if num > 4:
+      num = 4
+    return num
+
+
 
 
 if __name__ == "__main__":
-  # self, width, height, highScoreFile, gameMode, graphicsMode, pixelSize = None, pieceSize = None, speed = None
-  c = Computer(20,20,"hs.txt",0,1,26,22,1)
+  # (self, width, height, gameMode, graphicsMode, highScoreFile = None, pixelSize = None, pieceSize = None, speed = None):
+
+  # start human player game
+  # c = Computer(20,20,0,1,"hs.txt",26,22,1)
+
+  c = Computer(20,20,1,0)
 
 
 

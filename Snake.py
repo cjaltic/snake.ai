@@ -2,7 +2,7 @@
 from Coordinate import Coordinate
 
 class Snake:
-  def __init__(self, head, width, height, body = []):
+  def __init__(self, head, body = []):
     # head is the initial coordinate
     self.head = head
     # here is the key for the direction code
@@ -14,8 +14,6 @@ class Snake:
     self.body = body
     self.length = 1
     self.alive = True
-    self.width = width
-    self.height = height
     self.growCount = 0
 
   def changeDirection(self, direction = 0):
