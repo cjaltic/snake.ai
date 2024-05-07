@@ -16,9 +16,7 @@ class Board:
 
     self.tickCount = 0
 
-    self.highScoreEngine = None
-    if highScoreFile != None:
-      self.highScoreEngine = HighScoreEngine(highScoreFile)
+    self.highScoreEngine = HighScoreEngine(highScoreFile)
 
     if self.food is None:
       self.spawnFood()

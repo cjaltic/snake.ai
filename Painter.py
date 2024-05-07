@@ -57,7 +57,7 @@ class Painter:
 
   def pygameEventHandler(self):
     # buffer
-    self.clock.tick(self.speed)
+    self.delayGame()
     key_pressed = "STRIAGHT"
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -120,6 +120,9 @@ class Painter:
     # paint body
     for piece in self.board.snake.body:
       pygame.draw.rect(self.screen, self.SNAKE_COLOR, (self.paddingSize/2 + (piece.x * self.pixelSize) + self.pixelPadding, self.paddingSize/2 + (piece.y * self.pixelSize) + self.pixelPadding, self.pieceSize, self.pieceSize))
+
+  def delayGame(self):
+    self.clock.tick(self.speed)
 
   def endGame(self):
     self.paintBackground()
