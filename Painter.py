@@ -55,39 +55,25 @@ class Painter:
     pygame.display.set_caption("snake")
     self.clock = pygame.time.Clock()
 
-  def gameLoop(self):
-    running = True
-    while running:
-      # add delay
-      self.clock.tick(self.speed)
-      # Event handling
-      for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-          running = False
-        elif event.type == pygame.KEYDOWN:
-          if event.key == pygame.K_UP:
-            key_pressed = "UP"
-            self.board.changeSnakeDirection(3)
-            break
-          elif event.key == pygame.K_DOWN:
-            key_pressed = "DOWN"
-            self.board.changeSnakeDirection(1)
-            break
-          elif event.key == pygame.K_LEFT:
-            key_pressed = "LEFT"
-            self.board.changeSnakeDirection(2)
-            break
-          elif event.key == pygame.K_RIGHT:
-            key_pressed = "RIGHT"
-            self.board.changeSnakeDirection(0)
-            break
-          else:
-            key_pressed = "UNKNOWN"
-      
-      if not self.board.tick():
+  def pygameEventHandler(self):
+    # buffer
+    self.clock.tick(self.speed)
+    key_pressed = "STRIAGHT"
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
         running = False
-
-      self.paint()
+      elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_UP:
+          key_pressed = "UP"
+        elif event.key == pygame.K_DOWN:
+          key_pressed = "DOWN"
+        elif event.key == pygame.K_LEFT:
+          key_pressed = "LEFT"
+        elif event.key == pygame.K_RIGHT:
+          key_pressed = "RIGHT"
+        else:
+          key_pressed = "UNKNOWN"
+    return key_pressed
         
   def resetSnake(self):
     self.board.resetSnake()
@@ -157,3 +143,46 @@ class Painter:
             running = False
             break
     return True
+
+
+
+
+"""
+
+
+  def gameLoop(self):
+    running = True
+    while running:
+      # add delay
+      self.clock.tick(self.speed)
+      key_pressed = ""
+      # Event handling
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          running = False
+        elif event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_UP:
+            key_pressed = "UP"
+            self.board.changeSnakeDirection(3)
+            break
+          elif event.key == pygame.K_DOWN:
+            key_pressed = "DOWN"
+            self.board.changeSnakeDirection(1)
+            break
+          elif event.key == pygame.K_LEFT:
+            key_pressed = "LEFT"
+            self.board.changeSnakeDirection(2)
+            break
+          elif event.key == pygame.K_RIGHT:
+            key_pressed = "RIGHT"
+            self.board.changeSnakeDirection(0)
+            break
+          else:
+            key_pressed = "UNKNOWN"
+      # print(key_pressed)
+      
+      if not self.board.tick():
+        running = False
+
+      self.paint()
+"""

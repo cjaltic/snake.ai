@@ -53,6 +53,25 @@ Would also like to add a quick high score tracker that saves between boots.  If 
 5/5
 Got the high score engine built and working.
 
+I've started adding code to make the AI able to control it.  I added a Computer class and will be adding a Controller class.
+I also added two variables to the Game class.  Game Mode and Graphics Mode.  Game Mode is 0 or 1 for human or computer player,
+respectively.  and Graphics Mode is 0 or 1 for Graphics on or off.  Graphics can only be turned off for the computer player
+for two reasons:  1) the main game loop is all in the Painter.  2) the key listener is a part of the pygame environment so 
+I don't have a way of taking user input outside the Painter class.  
+I'm also starting to realize setting up the GUI for the Computer player will be a whole different thing with it being wired through
+the computer class.  I'm going to start with the no graphics approach.  The no graphics mode will be the most used approach when
+I'm working with the AI.  And I don't have much of a need to have full graphics working until I have a good AI implemented anyway.  
+
+Made some good progress on implementing the computer class.  I started trying to run a thousand games at a time with the random 
+controller but after looking at the data from it realized the board is not resetting.  After trying to get the board to reset
+theres a bug where it will only run once.  Will have to figure this out later.
+
+
+5/6 
+I want the computer to just have one method playGame() that does everything we need.  It creates a brand new board, and runs one game.  
+If I have this in place it will be easier to abstract and run many games and it will be easier to implement some data collection.
+I might need to redo a lot of my work on the Computer class but this is the way forward.
+
 
 
 

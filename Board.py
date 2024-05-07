@@ -10,12 +10,15 @@ class Board:
     self.food = food
     self.score = 0
 
+    self.tickCount = 0
+
     self.highScoreEngine = HighScoreEngine(highScoreFile)
 
     if self.food is None:
       self.spawnFood()
 
   def tick(self):
+    self.tickCount = self.tickCount + 1
     # check if the snake is alive or not
     # if snake is not alive make tick() return False
     if self.snake.head.x < 0 or self.snake.head.x > self.snake.width - 1 or self.snake.head.y < 0 or self.snake.head.y > self.snake.height - 1:
@@ -37,6 +40,11 @@ class Board:
     self.food = Food(self.snake.width, self.snake.height)
     while self.isFoodTouchingSnake():
       self.food = Food(self.snake.width, self.snake.height)
+
+  def resetBoard(self):
+    self.resetSnake()
+    self.resetScore()
+    self.tickCount = 0
 
   def resetSnake(self):
     self.snake = Snake(Coordinate(3,1), self.snake.width, self.snake.height)
